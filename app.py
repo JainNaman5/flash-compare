@@ -346,13 +346,13 @@ def home():
         'note': 'Some websites (Amazon, Flipkart) use anti-bot protection and may not always work.'
     })
 
-if __name__ == '__main__':
-    print("=" * 50)
-    print("Starting Flask server...")
-    print("API available at: http://127.0.0.1:5000/")
-    print("Health check: http://127.0.0.1:5000/health")
-    print("=" * 50)
-    app.run(debug=True, host='0.0.0.0', port=5000)
+# if __name__ == '__main__':
+#     print("=" * 50)
+#     print("Starting Flask server...")
+#     print("API available at: http://127.0.0.1:5000/")
+#     print("Health check: http://127.0.0.1:5000/health")
+#     print("=" * 50)
+#     app.run(debug=True, host='0.0.0.0', port=5000)
 
 
 
