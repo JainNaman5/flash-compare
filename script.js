@@ -1,4 +1,4 @@
-const form = document.getElementById('compare-form');
+// const form = document.getElementById('compare-form');
 const url1Input = document.getElementById('url1');
 const url2Input = document.getElementById('url2');
 const loadingIndicator = document.getElementById('loading-indicator');
@@ -9,7 +9,7 @@ const modal = document.getElementById('modal');
 const modalMessage = document.getElementById('modal-message');
 const modalCloseBtn = document.getElementById('modal-close-btn');
 
-const API_BASE_URL = 'https://flash-compare.onrender.com';
+const API_BASE_URL = 'http://localhost:5000';
 
 function showModal(message) {
     modalMessage.textContent = message;
