@@ -1,80 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Universal Feature Comparator</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="bg-gray-100 min-h-screen">
 
-    <div class="container py-8">
+<body class="bg-blue-50 min-h-screen">
+
+    <div class="container py-10">
+
+        <!-- HEADER -->
         <header class="text-center mb-12">
-            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-800 tracking-tight">
+            <h1 class="text-5xl font-extrabold text-black tracking-tight drop-shadow">
                 Universal Feature Comparator
             </h1>
-            <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-                Compare features of anything side-by-side by providing the URLs.
-            </p>
+
+            <!-- Marquee -->
+            <marquee behavior="scroll" direction="left" scrollamount="6" class="mt-6">
+                <p class="text-lg text-blue-700 font-medium max-w-3xl mx-auto">
+                    Compare features of anything side-by-side by providing the URLs.
+                </p>
+            </marquee>
         </header>
 
-        <main class="bg-white p-6 sm:p-8 rounded-2xl shadow-xl mb-8">
+        <!-- MAIN FORM -->
+        <main class="bg-white border border-blue-200 p-8 rounded-2xl shadow-xl mb-12">
             <form id="compare-form" class="space-y-6">
+
+                <!-- URL 1 -->
                 <div>
-                    <label for="url1" class="block text-sm font-medium text-gray-700">URL 1</label>
-                    <input type="url" id="url1" placeholder="e.g., https://example.com/productA" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-3 transition-colors duration-200">
+                    <label for="url1" class="block text-sm font-semibold text-black">URL 1</label>
+                    <input type="url" id="url1"
+                        placeholder="e.g., https://example.com/productA"
+                        class="mt-1 block w-full rounded-md border-gray-400 shadow-sm 
+                               focus:border-blue-600 focus:ring-blue-600 
+                               p-3 bg-gray-100 text-black">
                 </div>
+
+                <!-- URL 2 -->
                 <div>
-                    <label for="url2" class="block text-sm font-medium text-gray-700">URL 2</label>
-                    <input type="url" id="url2" placeholder="e.g., https://example.com/productB" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-3 transition-colors duration-200">
+                    <label for="url2" class="block text-sm font-semibold text-black">URL 2</label>
+                    <input type="url" id="url2"
+                        placeholder="e.g., https://example.com/productB"
+                        class="mt-1 block w-full rounded-md border-gray-400 shadow-sm 
+                               focus:border-blue-600 focus:ring-blue-600 
+                               p-3 bg-gray-100 text-black">
                 </div>
+
+                <!-- Compare Button -->
                 <div class="flex items-center space-x-2">
-                    <button type="submit" class="w-full bg-blue-600 text-white font-semibold py-3 px-4 rounded-xl shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-300">
+                    <button type="submit"
+                        class="w-full bg-blue-600 text-white font-semibold py-3 px-4 rounded-xl shadow-lg 
+                               hover:bg-blue-700 focus:outline-none focus:ring-2 
+                               focus:ring-blue-500 focus:ring-offset-2 transition-all duration-300">
                         Compare Features
                     </button>
+
                     <div id="loading-indicator" class="hidden loading-spinner"></div>
                 </div>
             </form>
         </main>
 
-        <section id="comparison-results" class="hidden">
-  <div class="overflow-x-auto">
-    <table class="min-w-full border rounded-xl shadow-md">
-      <thead id="table-headers" class="bg-gray-100">
-        <tr>
-          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700 uppercase">Feature</th>
-          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700 uppercase">Item 1</th>
-          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700 uppercase">Item 2</th>
-        </tr>
-      </thead>
-      <tbody id="comparison-table-body" class="bg-white divide-y divide-gray-200">
-        <!-- Rows will be injected here -->
-      </tbody>
-    </table>
-  </div>
-</section>
+        <!-- MODERN RESULTS BOX -->
+        <section id="comparison-results" class="hidden fade-in">
+            <div class="overflow-x-auto mt-10">
 
+                <table class="min-w-full bg-white shadow-xl rounded-2xl border border-gray-300 backdrop-blur">
 
-        
+                    <!-- HEADER -->
+                    <thead id="table-headers"
+                        class="bg-gray-100 rounded-t-2xl border-b border-gray-300">
+                        <tr>
+                            <th class="px-6 py-4 text-left text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                                Feature
+                            </th>
+                            <th class="px-6 py-4 text-left text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                                Item 1
+                            </th>
+                            <th class="px-6 py-4 text-left text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                                Item 2
+                            </th>
+                        </tr>
+                    </thead>
 
-        <!-- Custom Modal/Message Box for errors -->
-        <div id="modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden items-center justify-center p-4 z-50">
+                    <!-- BODY (ROWS INSERTED VIA JS) -->
+                    <tbody id="comparison-table-body"
+                        class="text-gray-900 divide-y divide-gray-300">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ABOUT US -->
+        <section class="mt-16 bg-white shadow-lg border border-blue-200 p-8 rounded-2xl">
+            <h2 class="text-3xl font-bold text-blue-700 mb-4 text-center">About Us</h2>
+            <p class="text-gray-700 leading-relaxed text-lg text-center max-w-3xl mx-auto">
+                Universal Feature Comparator helps users compare product descriptions, pricing, features, 
+                and specifications using only URLs. Our goal is to make your decision-making process simple, 
+                accurate, and lightning fast.
+            </p>
+            <div class="mt-6 text-center">
+                <p class="text-gray-600 text-md">
+                    Built with ❤️ for shoppers, professionals, and researchers.
+                </p>
+            </div>
+        </section>
+
+        <!-- ERROR MODAL -->
+        <div id="modal"
+            class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden items-center justify-center p-4 z-50">
             <div class="bg-white rounded-xl shadow-2xl p-6 w-full max-w-sm">
                 <div class="flex flex-col items-center space-y-4">
                     <h3 class="text-xl font-bold text-red-600">Error</h3>
                     <p id="modal-message" class="text-gray-700 text-center"></p>
-                    <button id="modal-close-btn" class="bg-red-500 text-white font-semibold py-2 px-4 rounded-xl hover:bg-red-600 transition-colors duration-200">
+                    <button id="modal-close-btn"
+                        class="bg-red-500 text-white font-semibold py-2 px-4 rounded-xl hover:bg-red-600 transition-colors duration-200">
                         Close
                     </button>
                 </div>
             </div>
         </div>
+
     </div>
-
-    
-
 
     <script src="script.js"></script>
 </body>
+
 </html>
