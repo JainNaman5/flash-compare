@@ -1,4 +1,4 @@
-// const form = document.getElementById('compare-form');
+const form = document.getElementById('compare-form');
 const url1Input = document.getElementById('url1');
 const url2Input = document.getElementById('url2');
 const loadingIndicator = document.getElementById('loading-indicator');
@@ -153,3 +153,4 @@ function escapeHtml(text) {
     };
     return text.replace(/[&<>"']/g, m => map[m]);
 }
+
